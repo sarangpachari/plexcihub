@@ -3,13 +3,13 @@ import TrueFocus from "./react-bits/TrueFocus";
 
 const Header = () => {
   return (
-    <div className="flex justify-start px-6 py-4">
+    <div className="flex justify-start p-6 fixed w-full">
       <TrueFocus
         sentence="PlexCi Hub"
         manualMode={false}
         blurAmount={5}
         borderColor="white"
-        animationDuration={2}
+        animationDuration={1}
         pauseBetweenAnimations={1}
       />
     </div>

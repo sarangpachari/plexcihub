@@ -11,6 +11,7 @@ const HeroSection = () => {
         direction="bottom"
         className="text-5xl sm:text-6xl  md:text-7xl lg:text-8xl xl:text-9xl mb-8 font-semibold text-gray-200 leading-18 px-6"
       />
+
     </div>
   );
 };
