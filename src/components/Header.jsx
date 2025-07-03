@@ -3,7 +3,7 @@ import TrueFocus from "./react-bits/TrueFocus";
 
 const Header = () => {
   return (
-    <div className="flex justify-start p-6 fixed w-full">
+    <div className="flex justify-start p-6 fixed backdrop-blur-3xl w-full">
       <TrueFocus
         sentence="PlexCi Hub"
         manualMode={false}
