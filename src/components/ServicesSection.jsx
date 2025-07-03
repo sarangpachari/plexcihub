@@ -1,11 +1,27 @@
 import React from "react";
-import Threads from "./react-bits/ThreadsBg";
+import ScrollFloat from "./react-bits/ScrollFloat";
 
 const ServicesSection = () => {
   return (
-    <div style={{ width: "100%", height: "600px", position: "relative" }}>
-      <Threads amplitude={1} distance={0} enableMouseInteraction={false} />
-    </div>
+    <>
+      {/* <div className="min-h-screen w-full h-full flex justify-center text-white">
+        <div>
+          <ScrollFloat
+            animationDuration={1}
+            ease="back.inOut(2)"
+            scrollStart="center bottom+=50%"
+            scrollEnd="bottom bottom-=40%"
+            stagger={0.03}
+          >
+            We Offer Something more !
+          </ScrollFloat>
+        </div>
+
+        
+      </div> */}
+
+      
+    </>
   );
 };
 
