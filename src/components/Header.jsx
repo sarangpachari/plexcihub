@@ -26,7 +26,7 @@ const Header = () => {
         scrolled ? "bg-[#0f172a]/90 shadow-md backdrop-blur-xl" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="w-full mx-auto px-8 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="text-white text-2xl font-bold">
           <TrueFocus
