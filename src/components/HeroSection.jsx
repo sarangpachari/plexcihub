@@ -3,7 +3,7 @@ import BlurText from "./react-bits/BlurText";
 
 const HeroSection = () => {
   return (
-    <div className="min-h-screen w-full flex justify-center items-center p-4 text-center text-white">
+    <div id="home" className="min-h-screen w-full flex justify-center items-center p-4 text-center text-white">
       <BlurText
         text="Isn't this so cool?!"
         delay={700}

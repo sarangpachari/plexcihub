@@ -1,18 +1,96 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import { AnimatePresence, motion } from "framer-motion";
 import TrueFocus from "./react-bits/TrueFocus";
 
 const Header = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { label: "Home", href: "#home" },
+    { label: "Services", href: "#services" },
+    { label: "Projects", href: "#portfolio" },
+    { label: "Reviews", href: "#reviews" },
+  ];
+
   return (
-    <div className="flex justify-start p-6 fixed backdrop-blur-3xl w-full z-50">
-      <TrueFocus
-        sentence="PlexCi Hub"
-        manualMode={false}
-        blurAmount={5}
-        borderColor="white"
-        animationDuration={1}
-        pauseBetweenAnimations={1}
-      />
-    </div>
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "bg-[#0f172a]/90 shadow-md backdrop-blur-xl" : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <div className="text-white text-2xl font-bold">
+          <TrueFocus
+            sentence="PlexCi Hub"
+            manualMode={false}
+            blurAmount={5}
+            borderColor="white"
+            animationDuration={1}
+            pauseBetweenAnimations={1}
+          />
+        </div>
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex space-x-6 text-white font-medium">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="hover:text-[#00ffc3] transition-all duration-200"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Mobile Toggle Button */}
+        <motion.div
+          className="md:hidden text-white text-2xl cursor-pointer"
+          initial={{ rotate: 0, scale: 1 }}
+          animate={{ rotate: mobileOpen ? 180 : 0, scale: 1.1 }}
+          transition={{ duration: 0.3 }}
+          onClick={() => setMobileOpen(!mobileOpen)}
+        >
+          {mobileOpen ? <CloseOutlined /> : <MenuOutlined />}
+        </motion.div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            key="mobileMenu"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden px-6 pt-2 pb-6 bg-[#0f172a] text-white flex flex-col space-y-4"
+          >
+            {navLinks.map((link) => (
+              <motion.a
+                key={link.label}
+                href={link.href}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                className="hover:text-[#00ffc3] transition text-lg"
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </motion.a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 };
 
