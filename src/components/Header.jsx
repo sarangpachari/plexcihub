@@ -28,7 +28,7 @@ const Header = () => {
     >
       <div className="w-full mx-auto px-8 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="text-white text-2xl font-bold">
+        <div className="text-white text-2xl font-bold pt-4">
           <TrueFocus
             sentence="PlexCi Hub"
             manualMode={false}
