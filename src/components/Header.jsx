@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#0f172a]/90 shadow-md backdrop-blur-xl" : "bg-transparent"
+        scrolled ? "bg-[#0f172a]/30 shadow-md backdrop-blur-xl" : "bg-transparent"
       }`}
     >
       <div className="w-full mx-auto px-8 py-4 flex items-center justify-between">
