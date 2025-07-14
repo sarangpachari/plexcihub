@@ -1,36 +1,66 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { FaWhatsapp, FaFacebookF, FaInstagram, FaPhone } from "react-icons/fa";
 
-const OverlayButtons = () => (
-  <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-3">
-    <a
-      href="https://wa.me/+917012981845"
-      target="_blank"
-      className="bg-[#25d36561] hover:bg-[#1ebe58] p-3 rounded-full shadow-lg hover:scale-110 transition-transform"
+const OverlayButtons = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="fixed bottom-8 right-5 z-50 flex flex-col gap-3"
     >
-      <FaWhatsapp className="text-white text-xl" />
-    </a>
-    <a
-      href="https://instagram.com/plexcihub"
-      target="_blank"
-      className="bg-gradient-to-br from-[#833ab47f] via-[#fd1d1d8e] to-[#fcb0456f] p-3 rounded-full shadow-lg hover:scale-110 transition-transform"
-    >
-      <FaInstagram className="text-white text-xl" />
-    </a>
-    <a
-      href="https://www.facebook.com/share/14Fkb24gKzL/?mibextid=wwXIfr"
-      target="_blank"
-      className="bg-[#1876f255] hover:bg-[#0f66d3] p-3 rounded-full shadow-lg hover:scale-110 transition-transform"
-    >
-      <FaFacebookF className="text-white text-xl" />
-    </a>
-    <a
-      href="tel:+917012981845"
-      className="bg-[#213869] hover:bg-[#1f2937] p-3 rounded-full shadow-lg hover:scale-110 transition-transform"
-    >
-      <FaPhone className="text-white text-xl" />
-    </a>
-  </div>
-);
+      {[
+        {
+          href: "https://wa.me/+917012981845",
+          icon: <FaWhatsapp />,
+          color: "#25D366",
+          bgHover: "#25D366",
+        },
+        {
+          href: "https://instagram.com/plexcihub",
+          icon: <FaInstagram />,
+          color: "#E1306C",
+          bgHover: "",
+          gradient: true,
+        },
+        {
+          href: "https://www.facebook.com/share/14Fkb24gKzL/?mibextid=wwXIfr",
+          icon: <FaFacebookF />,
+          color: "#1877F2",
+          bgHover: "#1877F2",
+        },
+        {
+          href: "tel:+917012981845",
+          icon: <FaPhone />,
+          color: "#213869",
+          bgHover: "#213869",
+        },
+      ].map((button, idx) => (
+        <a
+          key={idx}
+          href={button.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 ${
+            button.gradient
+              ? "bg-gradient-to-br from-[#833ab420] via-[#fd1d1d20] to-[#fcb04520] hover:from-[#E1306C] hover:via-[#E1306C] hover:to-[#E1306C]"
+              : `bg-[${button.color}30] hover:bg-[${button.bgHover}]`
+          }`}
+        >
+          <div
+            className={`text-xl transition-colors duration-300 ${
+              button.gradient
+                ? "text-[#E1306C] hover:text-white"
+                : `text-[${button.color}] hover:text-white`
+            }`}
+          >
+            {button.icon}
+          </div>
+        </a>
+      ))}
+    </motion.div>
+  );
+};
 
 export default OverlayButtons;

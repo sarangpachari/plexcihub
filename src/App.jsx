@@ -10,20 +10,20 @@ import Header from "./components/Header";
 
 const App = () => {
   return (
-    <div className="relative bg-gradient-to-br from-[#060010] via-slate-900 to-[#060010] overflow-hidden">
+    <div className="relative  overflow-hidden">
       <SplashCursor />
       <Header />
       <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
-        <section className="h-screen snap-start flex items-center justify-center bg-[#0f172a] text-white">
+        <section className="h-screen snap-start flex items-center justify-center ">
           <HeroSection />
         </section>
-        <section className="h-screen snap-start flex items-center justify-center bg-[#1e293b] text-white">
+        <section className="h-screen snap-start flex items-center justify-center ">
           <PortfolioSection />
         </section>
-        <section className="h-screen snap-start flex items-center justify-center bg-[#334155] text-white">
+        <section className="h-screen snap-start flex items-center justify-center">
           <ServicesSection />
         </section>
-        <section className="h-screen snap-start flex items-center justify-center bg-[#475569] text-white">
+        <section className="h-screen snap-start flex items-center justify-center ">
           <ReviewSection />
         </section>
       </div>

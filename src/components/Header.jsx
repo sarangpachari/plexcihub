@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-[#0f172a]/30 shadow-md backdrop-blur-xl" : "bg-transparent"
+        scrolled ? "bg-gray-50/30 shadow backdrop-blur-xl" : "bg-transparent"
       }`}
     >
       <div className="w-full mx-auto px-8 py-4 flex items-center justify-between">
@@ -32,20 +32,20 @@ const Header = () => {
           <TrueFocus
             sentence="PlexCi Hub"
             manualMode={false}
-            blurAmount={5}
-            borderColor="white"
+            blurAmount={4}
+            borderColor="black"
             animationDuration={1}
-            pauseBetweenAnimations={1}
+            pauseBetweenAnimations={0.5}
           />
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex space-x-6 text-white font-medium">
+        <nav className="hidden md:flex space-x-6 text-black font-medium">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="hover:text-[#00ffc3] transition-all duration-200"
+              className="hover:text-gray-600 transition-all duration-200"
             >
               {link.label}
             </a>
@@ -73,7 +73,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden px-6 pt-2 pb-6 bg-[#0f172a] text-white flex flex-col space-y-4"
+            className="md:hidden px-6 pt-2 pb-6 bg-gray-50/20 text-black flex flex-col space-y-4"
           >
             {navLinks.map((link) => (
               <motion.a
@@ -81,7 +81,7 @@ const Header = () => {
                 href={link.href}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className="hover:text-[#00ffc3] transition text-lg"
+                className="hover:text-gray-500 transition text-lg"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
