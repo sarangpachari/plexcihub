@@ -125,15 +125,27 @@ const HeroSection = () => {
           className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4"
         >
           <motion.a
-            href="#services"
-            className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl 
+  href="#services"
+  className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl 
     bg-white text-gray-900 font-semibold shadow-md border border-gray-200
-    hover:shadow-lg transition"
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            Grow you Business
-          </motion.a>
+    hover:shadow-lg flex items-center gap-2 transition"
+  animate={{ scale: [1, 1.05, 1] }}
+  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+>
+  {/* SVG Icon */}
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-5 h-5 text-green-500"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 17l6-6 4 4 8-8" />
+  </svg>
+  Grow your Business
+</motion.a>
+
 
           {/* <motion.a
             href="#portfolio"
