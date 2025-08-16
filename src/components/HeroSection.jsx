@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Landing1 from "../assets/landing1.png";
+import RequestCallbackModal from "./modals/RequestCallbackModal";
 
 const sentence = {
   hidden: { opacity: 1 },
@@ -23,6 +24,7 @@ const word = {
 };
 
 const HeroSection = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   const text = "Your Brand Deserves More. We Make It Unforgettable.".split(" ");
   const paragraph =
     "At Plex Ci Hub, we craft modern, responsive, and high-performing websites that don’t just look stunning — they help your business grow.".split(
@@ -128,12 +130,10 @@ const HeroSection = () => {
           className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4"
         >
           <motion.a
-            href="#services"
+            onClick={() => setModalOpen(true)}
             className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl 
     bg-white text-gray-900 font-semibold shadow-md border border-gray-200
     hover:shadow-lg flex items-center gap-2 transition"
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
             {/* SVG Icon */}
             <svg
@@ -152,7 +152,10 @@ const HeroSection = () => {
             </svg>
             Grow your Business
           </motion.a>
-
+          <RequestCallbackModal
+            isOpen={modalOpen}
+            onClose={() => setModalOpen(false)}
+          />
           {/* <motion.a
             href="#portfolio"
             className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl 
@@ -171,7 +174,7 @@ const HeroSection = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-        className="mt-8 sm:mt-12 md:mt-0 md:ml-8 lg:ml-12 xl:ml-20 flex justify-center relative z-10"
+        className="mt-8 sm:mt-12 md:mt-0 md:ml-8 lg:ml-12 xl:ml-20 flex justify-center"
       >
         <img
           src={Landing1}

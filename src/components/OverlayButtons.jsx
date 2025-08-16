@@ -8,7 +8,7 @@ const OverlayButtons = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed bottom-8 right-5 z-50 flex flex-col gap-3"
+      className="hidden md:fixed bottom-8 right-5 md:flex flex-col gap-3"
     >
       {[
         {

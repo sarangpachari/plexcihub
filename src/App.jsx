@@ -4,12 +4,12 @@ import PortfolioSection from "./components/PortfolioSection";
 import Footer from "./components/Footer";
 import OverlayButtons from "./components/OverlayButtons";
 import Header from "./components/Header";
+import OverlayButtonsMobile from "./components/OverlayButtonsMobile";
 
 const App = () => {
   return (
     <div className="relative overflow-hidden">
       <Header />
-
       <div className="overflow-y-scroll scroll-smooth md:h-screen md:snap-y md:snap-mandatory">
         {/* Hero Section */}
         <section className="flex items-center justify-center w-full h-auto md:h-screen md:snap-start">
@@ -31,8 +31,9 @@ const App = () => {
           <Footer />
         </section>
       </div>
-
-      <OverlayButtons />
+      {/* Floating buttons */}
+      <OverlayButtons /> {/* Desktop / Tablet */}
+      <OverlayButtonsMobile /> {/* Mobile only */}
     </div>
   );
 };
