@@ -57,32 +57,33 @@ const ServicesSection = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center
+        className="hidden md:block text-3xl sm:text-4xl md:text-5xl font-extrabold text-center
         bg-gradient-to-r from-purple-700 via-pink-600 to-red-500 bg-clip-text text-transparent mb-12 z-10"
       >
         We Offer More!
       </motion.h2>
 
       {/* Services Cards */}
-<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 lg:gap-8 z-10 w-full max-w-6xl px-4 sm:px-0">
-  {services.map((service, index) => (
-    <motion.div
-      key={index}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
-      className="bg-white/70 backdrop-blur-md rounded-2xl shadow-lg p-6 flex flex-col items-center text-center
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 lg:gap-8 z-10 w-full max-w-6xl px-4 sm:px-0">
+        {services.map((service, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: index * 0.2 }}
+            className="bg-white/70 backdrop-blur-md rounded-2xl shadow-lg p-6 flex flex-col items-center text-center
         hover:scale-105 hover:shadow-2xl transition-transform duration-300
         w-full sm:w-auto"
-    >
-      <div className="mb-4 text-blue-500">{service.icon}</div>
-      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-      <p className="text-gray-700 text-sm sm:text-base">{service.description}</p>
-    </motion.div>
-  ))}
-</div>
-
+          >
+            <div className="mb-4 text-blue-500">{service.icon}</div>
+            <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+            <p className="text-gray-700 text-sm sm:text-base">
+              {service.description}
+            </p>
+          </motion.div>
+        ))}
+      </div>
     </section>
   );
 };

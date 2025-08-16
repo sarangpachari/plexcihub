@@ -21,7 +21,7 @@ const App = () => {
         <section className="h-screen snap-start flex items-center justify-center ">
           <PortfolioSection />
         </section>
-        <section className="h-screen snap-start flex items-center justify-center">
+        <section className="min-h-screen snap-start flex items-center justify-center">
           <ServicesSection />
         </section>
         <section className="h-screen snap-start flex items-center justify-center ">
