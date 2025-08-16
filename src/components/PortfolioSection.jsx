@@ -55,15 +55,15 @@ const PortfolioSection = () => {
         style={{
           backgroundImage:
             "linear-gradient(270deg, #9333ea, #ec4899, #f87171, #9333ea)",
-          backgroundSize: "600% 600%", // large size for smooth movement
+          backgroundSize: "600% 600%",
           WebkitBackgroundClip: "text",
           backgroundClip: "text",
         }}
         animate={{
-          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"], // move horizontally
+          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
         }}
         transition={{
-          duration: 8,
+          duration: 4, // faster
           repeat: Infinity,
           ease: "linear",
         }}

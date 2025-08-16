@@ -14,10 +14,10 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "Services", href: "#services" },
-    { label: "Projects", href: "#portfolio" },
-    { label: "Reviews", href: "#reviews" },
+    { label: "Come back to Home", href: "#home" },
+    { label: "Who We Are?", href: "#portfolio" },
+    { label: "Offerings", href: "#services" },
+    // { label: "Reviews", href: "#reviews" },
   ];
 
   return (

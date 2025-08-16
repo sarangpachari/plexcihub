@@ -1,33 +1,38 @@
-import React from "react";
 import HeroSection from "./components/HeroSection";
 import ServicesSection from "./components/ServicesSection";
 import PortfolioSection from "./components/PortfolioSection";
-import ReviewSection from "./components/ReviewSection";
 import Footer from "./components/Footer";
 import OverlayButtons from "./components/OverlayButtons";
-import SplashCursor from "./components/react-bits/SplashCursor";
 import Header from "./components/Header";
 
 const App = () => {
   return (
     <div className="relative overflow-hidden">
       <Header />
-      
-      <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
-      <SplashCursor />
-        <section className="h-screen snap-start flex items-center justify-center ">
+
+      <div className="overflow-y-scroll scroll-smooth md:h-screen md:snap-y md:snap-mandatory">
+        {/* Hero Section */}
+        <section className="flex items-center justify-center w-full h-auto md:h-screen md:snap-start">
           <HeroSection />
         </section>
-        <section className="h-screen snap-start flex items-center justify-center ">
+
+        {/* Portfolio Section */}
+        <section className="flex items-center justify-center w-full h-auto md:h-screen md:snap-start">
           <PortfolioSection />
         </section>
-        <section className="min-h-screen snap-start flex items-center justify-center">
+
+        {/* Services Section */}
+        <section className="flex items-center justify-center w-full h-auto md:min-h-screen md:snap-start">
           <ServicesSection />
         </section>
-        <section className="h-screen snap-start flex items-center justify-center ">
-          <ReviewSection />
+
+        {/* Footer Section */}
+        <section className="flex items-center justify-center w-full h-auto md:h-max md:snap-start">
+          <Footer />
         </section>
-      </div>     <OverlayButtons />
+      </div>
+
+      <OverlayButtons />
     </div>
   );
 };
