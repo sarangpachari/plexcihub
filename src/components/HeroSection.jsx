@@ -103,7 +103,7 @@ const HeroSection = () => {
                 delay: i * 0.15, // stagger entrance
                 repeat: Infinity,
                 repeatType: "mirror",
-                repeatDelay: 2, // <-- 2-second pause before repeating
+                repeatDelay: 8, // <-- 2-second pause before repeating
                 ease: "easeInOut",
               }}
               className={`inline-block ${
@@ -132,10 +132,10 @@ const HeroSection = () => {
             animate={{ scale: [1, 1.05, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            Get Started
+            Grow you Business
           </motion.a>
 
-          <motion.a
+          {/* <motion.a
             href="#portfolio"
             className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl 
     bg-gray-100 text-gray-800 font-semibold border border-gray-200
@@ -144,7 +144,7 @@ const HeroSection = () => {
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
           >
             View Projects
-          </motion.a>
+          </motion.a> */}
         </motion.div>
       </div>
 
