@@ -6,12 +6,14 @@ const services = [
   {
     icon: <FiCode size={28} />,
     title: "Website Development",
-    description: "Building responsive, modern websites tailored to your business.",
+    description:
+      "Building responsive, modern websites tailored to your business.",
   },
   {
     icon: <FiPenTool size={28} />,
     title: "UI/UX Design",
-    description: "Creating stunning, user-friendly designs for better engagement.",
+    description:
+      "Creating stunning, user-friendly designs for better engagement.",
   },
   {
     icon: <FiLayers size={28} />,
@@ -30,7 +32,7 @@ const ServicesSection = () => {
     <section
       id="services"
       className="relative min-h-screen w-full flex flex-col items-center justify-center
-      px-6 sm:px-12 md:px-20 lg:px-32 py-16 bg-gradient-to-b from-blue-50 via-white to-blue-50 overflow-hidden"
+      px-6 sm:px-12 md:px-20 lg:px-32 bg-gradient-to-b from-blue-50 via-white to-blue-50 overflow-hidden"
     >
       {/* Animated Background Blobs */}
       <motion.div
@@ -62,22 +64,25 @@ const ServicesSection = () => {
       </motion.h2>
 
       {/* Services Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 z-10 w-full max-w-6xl">
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: index * 0.2 }}
-            className="bg-white/70 backdrop-blur-md rounded-2xl shadow-lg p-6 flex flex-col items-center text-center hover:scale-105 hover:shadow-2xl transition-transform duration-300"
-          >
-            <div className="mb-4 text-blue-500">{service.icon}</div>
-            <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-            <p className="text-gray-700 text-sm sm:text-base">{service.description}</p>
-          </motion.div>
-        ))}
-      </div>
+<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 lg:gap-8 z-10 w-full max-w-6xl px-4 sm:px-0">
+  {services.map((service, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: index * 0.2 }}
+      className="bg-white/70 backdrop-blur-md rounded-2xl shadow-lg p-6 flex flex-col items-center text-center
+        hover:scale-105 hover:shadow-2xl transition-transform duration-300
+        w-full sm:w-auto"
+    >
+      <div className="mb-4 text-blue-500">{service.icon}</div>
+      <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+      <p className="text-gray-700 text-sm sm:text-base">{service.description}</p>
+    </motion.div>
+  ))}
+</div>
+
     </section>
   );
 };
