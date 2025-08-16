@@ -5,10 +5,10 @@ import TrueFocus from "./react-bits/TrueFocus";
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -19,13 +19,15 @@ const Header = () => {
     { label: "Offerings", href: "#services" },
   ];
 
+  // Only show header when scrolled more than 50px
+  if (scrollY < 50) return null;
+
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/40 shadow-lg backdrop-blur-xl"
-          : "bg-white/40 backdrop-blur-xl"
-      }`}
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="fixed top-0 left-0 w-full z-50 bg-white/40 shadow-lg backdrop-blur-xl"
     >
       <div className="w-full mx-auto px-12 py-6 flex items-center justify-between">
         {/* Logo */}
@@ -93,7 +95,7 @@ const Header = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 };
 
