@@ -76,7 +76,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden px-6 py-6 bg-gradient-to-br from-white via-gray-200 mx-4 to-white text-gray-800 flex rounded-4xl flex-col space-y-4"
+            className="md:hidden px-6 py-10 bg-gradient-to-br from-indigo-100 via-purple-200 mx-4 to-white text-gray-800 flex rounded-4xl flex-col space-y-4"
           >
             {navLinks.map((link) => (
               <motion.a
