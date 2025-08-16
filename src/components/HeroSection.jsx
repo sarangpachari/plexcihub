@@ -34,7 +34,7 @@ const HeroSection = () => {
       id="home"
       className="relative min-h-screen w-full flex flex-col md:flex-row items-center justify-center 
       px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 text-center md:text-left 
-      overflow-hidden bg-gradient-to-b from-white via-blue-50 to-white pt-28 md:pt-20"
+      overflow-hidden bg-gradient-to-b from-white via-blue-50 to-white"
     >
       {/* Background Blobs */}
       <div className="absolute top-[-15%] right-[-15%] w-[350px] sm:w-[450px] md:w-[550px] h-[350px] sm:h-[450px] md:h-[550px] bg-purple-200/40 rounded-full blur-3xl animate-pulse"></div>
