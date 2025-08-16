@@ -91,29 +91,34 @@ const HeroSection = () => {
 
         <motion.p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-gray-700 md:pr-4 lg:pr-8 leading-relaxed">
           {paragraph.map((word, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{
-                opacity: [0, 1, 1, 0.9, 1],
-                y: [20, 0, 0, -2, 0], // subtle float
-              }}
-              transition={{
-                duration: 2,
-                delay: i * 0.15, // stagger entrance
-                repeat: Infinity,
-                repeatType: "mirror",
-                repeatDelay: 8, // <-- 2-second pause before repeating
-                ease: "easeInOut",
-              }}
-              className={`inline-block ${
-                word === "Plex" || word === "Ci" || word === "Hub"
-                  ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 font-bold"
-                  : ""
-              }`}
-            >
-              {word}&nbsp;
-            </motion.span>
+           <motion.span
+  key={i}
+  initial={{ opacity: 0 }}
+  animate={{
+    opacity: [0, 1, 1, 0], // fade in, stay, then fade out
+  }}
+  transition={{
+    duration: 15,          // total cycle duration
+    times: [
+      0,       // start
+      0.1,     // fade in complete (10% of total duration)
+      0.9,     // stay visible until 90%
+      1,       // fade out complete
+    ],
+    delay: i * 0.15,      // stagger entrance between words
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className={`inline-block ${
+    word === "Plex" || word === "Ci" || word === "Hub"
+      ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 font-bold"
+      : ""
+  }`}
+>
+  {word}&nbsp;
+</motion.span>
+
+
           ))}
         </motion.p>
 
@@ -125,27 +130,30 @@ const HeroSection = () => {
           className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4"
         >
           <motion.a
-  href="#services"
-  className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl 
+            href="#services"
+            className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl 
     bg-white text-gray-900 font-semibold shadow-md border border-gray-200
     hover:shadow-lg flex items-center gap-2 transition"
-  animate={{ scale: [1, 1.05, 1] }}
-  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
->
-  {/* SVG Icon */}
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-5 h-5 text-green-500"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={2}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3 17l6-6 4 4 8-8" />
-  </svg>
-  Grow your Business
-</motion.a>
-
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            {/* SVG Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5 text-green-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 17l6-6 4 4 8-8"
+              />
+            </svg>
+            Grow your Business
+          </motion.a>
 
           {/* <motion.a
             href="#portfolio"
