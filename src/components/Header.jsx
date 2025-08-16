@@ -17,18 +17,19 @@ const Header = () => {
     { label: "Come back to Home", href: "#home" },
     { label: "Who We Are?", href: "#portfolio" },
     { label: "Offerings", href: "#services" },
-    // { label: "Reviews", href: "#reviews" },
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-10 transition-all duration-300 ${
-        scrolled ? "bg-gray-50/30 shadow backdrop-blur-xl" : "bg-transparent"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-white/40 shadow-lg backdrop-blur-xl"
+          : "bg-white/40 backdrop-blur-xl"
       }`}
     >
-      <div className="w-full mx-auto px-8 py-4 flex items-center justify-between">
+      <div className="w-full mx-auto px-12 py-6 flex items-center justify-between">
         {/* Logo */}
-        <div className="pt-4">
+        <div className="pt-1">
           <TrueFocus
             sentence="PlexCi Hub"
             manualMode={false}
@@ -40,7 +41,7 @@ const Header = () => {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex space-x-8 font-medium">
+        <nav className="hidden md:flex items-center space-x-8 font-medium">
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -49,18 +50,17 @@ const Header = () => {
                  transition-all duration-300 hover:opacity-90 group"
             >
               {link.label}
-              {/* Cool underline animation */}
               <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </nav>
 
-        {/* Mobile Toggle Button */}
+        {/* Mobile Toggle */}
         <motion.div
           className="md:hidden text-black text-2xl cursor-pointer"
           initial={{ rotate: 0, scale: 1 }}
-          animate={{ rotate: mobileOpen ? 180 : 0, scale: 1.1 }}
-          transition={{ duration: 0.3 }}
+          animate={{ rotate: mobileOpen ? 180 : 0, scale: mobileOpen ? 1.2 : 1 }}
+          transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <CloseOutlined /> : <MenuOutlined />}
@@ -72,11 +72,11 @@ const Header = () => {
         {mobileOpen && (
           <motion.div
             key="mobileMenu"
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden px-6 py-10 bg-gradient-to-br from-indigo-100 via-purple-200 mx-4 to-white text-gray-800 flex rounded-4xl flex-col space-y-4"
+            className="md:hidden mx-4 my-2 bg-white/70 backdrop-blur-lg rounded-3xl shadow-xl p-6 flex flex-col space-y-4"
           >
             {navLinks.map((link) => (
               <motion.a
@@ -84,7 +84,7 @@ const Header = () => {
                 href={link.href}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className="hover:text-gray-500 transition text-lg"
+                className="text-gray-800 font-medium text-lg hover:text-gray-500 transition"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
