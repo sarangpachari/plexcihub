@@ -91,34 +91,32 @@ const HeroSection = () => {
 
         <motion.p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-gray-700 md:pr-4 lg:pr-8 leading-relaxed">
           {paragraph.map((word, i) => (
-           <motion.span
-  key={i}
-  initial={{ opacity: 0 }}
-  animate={{
-    opacity: [0, 1, 1, 0], // fade in, stay, then fade out
-  }}
-  transition={{
-    duration: 15,          // total cycle duration
-    times: [
-      0,       // start
-      0.1,     // fade in complete (10% of total duration)
-      0.9,     // stay visible until 90%
-      1,       // fade out complete
-    ],
-    delay: i * 0.15,      // stagger entrance between words
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
-  className={`inline-block ${
-    word === "Plex" || word === "Ci" || word === "Hub"
-      ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 font-bold"
-      : ""
-  }`}
->
-  {word}&nbsp;
-</motion.span>
-
-
+            <motion.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: [0, 1, 1, 0], // fade in, stay, then fade out
+              }}
+              transition={{
+                duration: 15, // total cycle duration
+                times: [
+                  0, // start
+                  0.1, // fade in complete (10% of total duration)
+                  0.9, // stay visible until 90%
+                  1, // fade out complete
+                ],
+                delay: i * 0.15, // stagger entrance between words
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className={`inline-block ${
+                word === "Plex" || word === "Ci" || word === "Hub"
+                  ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 font-bold"
+                  : ""
+              }`}
+            >
+              {word}&nbsp;
+            </motion.span>
           ))}
         </motion.p>
 
