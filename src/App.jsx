@@ -10,10 +10,11 @@ import Header from "./components/Header";
 
 const App = () => {
   return (
-    <div className="relative  overflow-hidden">
-      <SplashCursor />
+    <div className="relative overflow-hidden">
       <Header />
+      
       <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+      <SplashCursor />
         <section className="h-screen snap-start flex items-center justify-center ">
           <HeroSection />
         </section>
@@ -26,10 +27,7 @@ const App = () => {
         <section className="h-screen snap-start flex items-center justify-center ">
           <ReviewSection />
         </section>
-      </div>
-
-      <Footer />
-      <OverlayButtons />
+      </div>     <OverlayButtons />
     </div>
   );
 };
