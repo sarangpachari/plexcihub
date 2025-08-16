@@ -1,6 +1,6 @@
 import React from "react";
 import BlurText from "./react-bits/BlurText";
-import Landing1 from "../assets/Landing1.png"
+// import Landing1 from "../assets/Landing1.png"
 
 const HeroSection = () => {
   return (
@@ -12,7 +12,7 @@ const HeroSection = () => {
         direction="bottom"
         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold text-gray-400 leading-tight px-4 sm:px-8"
       />
-      <img src={Landing1} className="w-sm md:w-lg lg:w-2xl" alt="" />
+      {/* <img src={Landing1} className="w-sm md:w-lg lg:w-2xl" alt="" /> */}
     </div>
   );
 };
