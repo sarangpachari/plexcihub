@@ -1,16 +1,18 @@
 // components/RequestCallbackModal.jsx
-import React, { useState } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiPhoneCall } from "react-icons/fi";
 
 const RequestCallbackModal = ({ isOpen, onClose }) => {
-  const [phoneNumber, setPhoneNumber] = useState("");
-
   const handleRequest = () => {
-    // Placeholder for WhatsApp API integration
-    console.log("Request callback for number:", phoneNumber);
-    // Clear input
-    setPhoneNumber("");
+    // WhatsApp Click-to-Chat link
+    const businessNumber = "917012981845"; // Your WhatsApp number with country code
+    const message = "Hi! I would like a callback from Plex Ci Hub.";
+    const whatsappLink = `https://wa.me/${businessNumber}?text=${encodeURIComponent(message)}`;
+
+    // Open WhatsApp in new tab
+    window.open(whatsappLink, "_blank");
+
     // Close modal
     onClose();
   };
@@ -51,17 +53,8 @@ const RequestCallbackModal = ({ isOpen, onClose }) => {
 
             {/* Description */}
             <p className="text-gray-600 text-center mb-4">
-              Thank you for contacting Plex Ci Hub. Enter your number and we will call you for a consultation to grow your business.
+              Thank you for contacting Plex Ci Hub. Click the button below and we will reach out to you via WhatsApp.
             </p>
-
-            {/* Input */}
-            <input
-              type="tel"
-              placeholder="Enter your phone number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              className="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-            />
 
             {/* Request Button */}
             <button
