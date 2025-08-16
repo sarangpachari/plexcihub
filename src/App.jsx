@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import OverlayButtons from "./components/OverlayButtons";
 import Header from "./components/Header";
 import OverlayButtonsMobile from "./components/OverlayButtonsMobile";
+import WebsiteChatbot from "./components/modals/WebsiteChatbot";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
       {/* Floating buttons */}
       <OverlayButtons /> {/* Desktop / Tablet */}
       <OverlayButtonsMobile /> {/* Mobile only */}
+      <WebsiteChatbot />
     </div>
   );
 };
