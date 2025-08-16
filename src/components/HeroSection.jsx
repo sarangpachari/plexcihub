@@ -1,6 +1,6 @@
 import React from "react";
 import BlurText from "./react-bits/BlurText";
-import Landing1 from "../../public/Landing1.png"
+import Landing1 from "../assets/Landing1.png"
 
 const HeroSection = () => {
   return (
