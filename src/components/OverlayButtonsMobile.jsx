@@ -13,30 +13,10 @@ const OverlayButtonsMobile = () => {
     { href: "tel:+917012981845", icon: <FaPhone /> },
   ];
 
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.07,
-        delayChildren: 0.05,
-      },
-    },
-  };
-
   const buttonVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.7 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { type: "spring", stiffness: 500, damping: 30 },
-    },
-    exit: {
-      opacity: 0,
-      y: 30,
-      scale: 0.7,
-      transition: { duration: 0.2 },
-    },
+    hidden: { opacity: 0, y: 20, scale: 0.8 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 500, damping: 25 } },
+    exit: { opacity: 0, y: 20, scale: 0.8, transition: { duration: 0.15 } },
   };
 
   return (
@@ -44,11 +24,10 @@ const OverlayButtonsMobile = () => {
       <AnimatePresence>
         {open && (
           <motion.div
-            variants={containerVariants}
+            className="flex flex-col items-end gap-3"
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="flex flex-col items-end gap-3"
           >
             {buttons.map((button, idx) => (
               <motion.a
@@ -57,18 +36,11 @@ const OverlayButtonsMobile = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 variants={buttonVariants}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-4 rounded-full shadow-xl flex items-center justify-center transition-all duration-300"
-                style={{
-                  background: "#adbbda", // Light Lavender
-                }}
               >
-                <div
-                  style={{ color: "#3d53a0" }} // Primary Deep Blue
-                  className="text-2xl transition-colors duration-300 hover:text-[#7091e6]" // Accent Blue on hover
-                >
-                  {button.icon}
+                <div className="p-4 rounded-full shadow-xl flex items-center justify-center" style={{ background: "#adbbda" }}>
+                  <div style={{ color: "#3d53a0" }} className="text-2xl">
+                    {button.icon}
+                  </div>
                 </div>
               </motion.a>
             ))}
@@ -86,7 +58,7 @@ const OverlayButtonsMobile = () => {
         transition={{ type: "spring", stiffness: 700, damping: 25 }}
         className="relative flex items-center justify-center w-16 h-16 rounded-full shadow-2xl text-white text-xl font-bold hover:shadow-blue-400 transition-all overflow-visible"
         style={{
-          background: "linear-gradient(135deg, #3d53a0, #7091e6)", // Deep Blue → Accent Blue gradient
+          background: "linear-gradient(135deg, #3d53a0, #7091e6)",
         }}
       >
         {open ? <IoMdClose size={28} /> : <IoMdContacts size={28} />}
