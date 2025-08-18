@@ -6,6 +6,7 @@ import OverlayButtons from "./components/OverlayButtons";
 import Header from "./components/Header";
 import OverlayButtonsMobile from "./components/OverlayButtonsMobile";
 import WhyChooseUs from "./components/WhyChooseUs";
+import PrivacyRefundSection from "./components/PrivacyRefundSection";
 // import WebsiteChatbot from "./components/modals/WebsiteChatbot";
 
 const App = () => {
@@ -31,6 +32,11 @@ const App = () => {
         {/* Services Section */}
         <section className="flex items-center justify-center w-full min-h-screen">
           <ServicesSection />
+        </section>
+
+        {/* Privacy & Refund Policy Section */}
+        <section className="flex items-center justify-center w-full min-h-screen">
+          <PrivacyRefundSection />
         </section>
 
         {/* Footer Section */}
