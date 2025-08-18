@@ -1,92 +1,127 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const PortfolioSection = () => {
+  // Scroll-based animations
+  const { scrollYProgress } = useScroll();
+  const yOffset = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const opacityFade = useTransform(scrollYProgress, [0, 0.3], [1, 0.5]);
+
   return (
     <section
       id="portfolio"
-      className="relative min-h-screen w-full flex flex-col items-center justify-center
-      px-6 sm:px-12 md:px-20 lg:px-32 py-16 bg-gradient-to-b from-blue-50 via-white to-blue-50 overflow-hidden"
+      className="relative min-h-screen w-full px-6 sm:px-12 md:px-20 lg:px-32 py-20 bg-[#ede8f5] overflow-hidden"
     >
-      {/* Animated Background Blobs */}
+      {/* Background Grid Animation */}
+      <motion.div
+        style={{ y: yOffset, opacity: opacityFade }}
+        className="absolute inset-0 grid grid-cols-12 grid-rows-6 gap-4 pointer-events-none"
+      >
+        {[...Array(72)].map((_, idx) => (
+          <motion.div
+            key={idx}
+            className="bg-[#3d53a0]/10 rounded-xl"
+            style={{ width: "100%", height: "100%" }}
+            animate={{
+              y: [0, Math.random() * 30 - 15, 0],
+              x: [0, Math.random() * 30 - 15, 0],
+              opacity: [0.3, 0.7, 0.3],
+            }}
+            transition={{
+              duration: 20 + Math.random() * 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
+      </motion.div>
+
+      {/* Background Moving Blobs */}
       <motion.div
         animate={{ y: [0, -40, 0], x: [0, 30, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[-15%] left-[-15%] w-96 sm:w-[28rem] md:w-[32rem] h-96 sm:h-[28rem] md:h-[32rem] bg-purple-200/30 rounded-full blur-3xl"
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[-20%] left-[-10%] w-80 h-80 md:w-96 md:h-96 bg-[#8697c4]/30 rounded-full blur-3xl"
       />
       <motion.div
         animate={{ y: [0, 30, 0], x: [0, -25, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-[-15%] right-[-15%] w-80 sm:w-[24rem] md:w-[28rem] h-80 sm:h-[24rem] md:h-[28rem] bg-pink-200/30 rounded-full blur-3xl"
+        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-[-20%] right-[-10%] w-64 h-64 md:w-80 md:h-80 bg-[#adbbda]/30 rounded-full blur-3xl"
       />
       <motion.div
         animate={{ y: [0, -15, 0], x: [0, 15, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/2 left-1/3 w-52 sm:w-64 md:w-72 h-52 sm:h-64 md:h-72 bg-blue-200/20 rounded-full blur-2xl"
+        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/2 left-1/3 w-48 h-48 md:w-64 md:h-64 bg-[#7091e6]/20 rounded-full blur-2xl"
       />
 
       {/* Decorative Particle Dots */}
-      {[...Array(15)].map((_, idx) => (
+      {[...Array(20)].map((_, idx) => (
         <motion.div
           key={idx}
           animate={{
-            y: [0, Math.random() * 20 - 10, 0],
-            x: [0, Math.random() * 20 - 10, 0],
+            y: [0, Math.random() * 15 - 7.5, 0],
+            x: [0, Math.random() * 15 - 7.5, 0],
           }}
           transition={{
-            duration: 10 + Math.random() * 5,
+            duration: 12 + Math.random() * 5,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className={`absolute w-1.5 h-1.5 bg-blue-300 rounded-full`}
+          className="absolute w-1.5 h-1.5 bg-[#7091e6] rounded-full"
           style={{
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
-            opacity: 0.4 + Math.random() * 0.6,
+            opacity: 0.3 + Math.random() * 0.5,
           }}
         />
       ))}
 
-      <motion.h1
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-center bg-clip-text text-transparent mb-6 z-10"
-        style={{
-          backgroundImage:
-            "linear-gradient(270deg, #9333ea, #ec4899, #f87171, #9333ea)",
-          backgroundSize: "600% 600%",
-          WebkitBackgroundClip: "text",
-          backgroundClip: "text",
-        }}
-        animate={{
-          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-        }}
-        transition={{
-          duration: 4, // faster
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      >
-        Build. Manage. Grow.
-      </motion.h1>
+      {/* Heading without gradient animation */}
+      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-center text-[#3d53a0] mb-6 z-10">
+        Who We Are
+      </h1>
 
-      {/* Description Paragraph */}
+      {/* SEO-Friendly Content */}
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        className="text-center mt-10 text-gray-700 text-base sm:text-lg md:text-xl max-w-3xl leading-relaxed z-10"
+        transition={{ duration: 0.8 }}
+        className="text-center mt-6 text-[#3d53a0] text-base sm:text-lg md:text-xl max-w-4xl leading-relaxed z-10"
       >
-        Since 2025,{" "}
-        <span className="font-semibold text-gray-900">Plex Ci Hub</span> has
-        been delivering stunning, high-performing websites tailored for hotels,
-        resorts, shops, and businesses. Every site comes with a fully integrated
-        admin panel for effortless management. We specialize in creating modern,
-        responsive, and visually appealing web solutions that help your business{" "}
-        <span className="font-semibold text-blue-500">grow</span> and stand out
-        online.
+        <span className="font-semibold text-[#3d53a0]">Plex Ci Hub</span> is a
+        premier web development and digital solutions company based in Wayanad,
+        Kerala. Since 2025, we have been helping businesses, hotels, resorts, and
+        shops create modern, responsive, and visually appealing websites. Our
+        solutions include fully integrated admin panels, intuitive user
+        interfaces, and scalable architectures that empower businesses to
+        <span className="font-semibold text-[#7091e6]"> grow</span> online.
+      </motion.p>
+
+      <motion.p
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="text-center mt-6 text-[#3d53a0]/90 text-base sm:text-lg md:text-xl max-w-4xl leading-relaxed z-10"
+      >
+        Our team specializes in web development, UI/UX design, and digital growth
+        strategies. We focus on delivering fast, scalable, and SEO-optimized
+        websites to ensure your business stands out in a competitive digital
+        landscape. At Plex Ci Hub, every project is tailored to meet your unique
+        goals and help you reach your audience effectively.
+      </motion.p>
+
+      <motion.p
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="text-center mt-6 text-[#3d53a0]/90 text-base sm:text-lg md:text-xl max-w-4xl leading-relaxed z-10"
+      >
+        Our mission is to provide end-to-end digital solutions with a
+        customer-centric approach. From designing captivating interfaces to
+        implementing robust backends and ensuring SEO-friendly architecture, we
+        ensure your brand makes a lasting impression online.
       </motion.p>
     </section>
   );
