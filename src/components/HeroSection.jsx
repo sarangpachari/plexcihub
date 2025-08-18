@@ -40,8 +40,7 @@ const HeroSection = () => {
     <section
       id="home"
       className="relative min-h-screen w-full flex flex-col items-center justify-center 
-      px-4 sm:px-6 md:px-12 lg:px-20 pt-20  /* ✅ pushes down below navbar */
-      bg-gradient-to-b from-[#3d53a0] via-[#7091e6] to-[#8697c4] 
+      px-4 sm:px-6 md:px-12 lg:px-20 bg-gradient-to-b from-[#3d53a0] via-[#7091e6] to-[#8697c4] 
       text-white overflow-hidden"
     >
       {/* Background Animation */}
@@ -57,22 +56,17 @@ const HeroSection = () => {
         style={{ y: yOrb1 }}
         animate={{ opacity: [0.5, 1, 0.5] }}
         transition={{ repeat: Infinity, duration: 6 }}
-        className="absolute top-10 left-5 w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 
-        bg-white/20 blur-[100px] rounded-full"
+        className="absolute top-10 left-5 w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-white/20 blur-[100px] rounded-full"
       />
       <motion.div
         style={{ y: yOrb2 }}
         animate={{ opacity: [0.4, 0.9, 0.4] }}
         transition={{ repeat: Infinity, duration: 8 }}
-        className="absolute bottom-16 right-8 w-24 h-24 sm:w-36 sm:h-36 md:w-48 md:h-48 
-        bg-[#3d53a0]/30 blur-[120px] rounded-full"
+        className="absolute bottom-16 right-8 w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 bg-[#3d53a0]/30 blur-[120px] rounded-full"
       />
 
       {/* Hero Content */}
-      <div
-        className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-between 
-      gap-8 md:gap-16 relative z-10"
-      >
+      <div className="w-full max-w-7xl flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16 relative z-10">
         {/* Left Content */}
         <motion.div
           style={{ y: yText, opacity: opacityText }}
@@ -82,14 +76,10 @@ const HeroSection = () => {
           viewport={{ once: true }}
           className="w-full md:w-1/2 text-center md:text-left"
         >
-          <h1
-            className="text-2xl sm:text-4xl lg:text-6xl font-extrabold leading-tight mb-6 
-          bg-clip-text text-transparent bg-gradient-to-r from-white via-[#ede8f5] to-[#adbbda] drop-shadow-lg"
-          >
-            Fueling Your Growth,
-            <br className="hidden sm:block" /> Pixel by Pixel.
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-[#ede8f5] to-[#adbbda] drop-shadow-lg">
+            Fueling Your Growth,<br className="hidden sm:block" /> Pixel by Pixel.
           </h1>
-          <p className="text-sm sm:text-lg lg:text-xl text-white/85 mb-8 leading-relaxed drop-shadow-md">
+          <p className="text-base sm:text-lg lg:text-xl text-white/85 mb-8 leading-relaxed drop-shadow-md">
             At <span className="font-bold">Plex Ci Hub</span>, we build websites
             that go beyond aesthetics. Every pixel, every line of code, crafted
             to scale your business globally.
@@ -98,8 +88,8 @@ const HeroSection = () => {
             <Button
               type="primary"
               size="large"
-              className="!bg-gradient-to-r !from-[#3d53a0] !to-[#7091e6] !rounded-xl !px-6 !py-3 
-                         !shadow-lg hover:!shadow-2xl hover:scale-105 transition-all duration-300 text-sm sm:text-base"
+              className="!bg-gradient-to-r !from-[#3d53a0] !to-[#7091e6] !rounded-2xl !px-8 !py-3 
+                         !shadow-xl hover:!shadow-2xl hover:scale-105 transition-all duration-300"
             >
               Grow Your Business
             </Button>
@@ -109,7 +99,7 @@ const HeroSection = () => {
         {/* Right Content */}
         <motion.div
           style={{ scale: scaleCards, rotate: rotateCards }}
-          className="relative grid grid-cols-6 grid-rows-6 gap-3 sm:gap-6 w-full md:w-1/2"
+          className="relative grid grid-cols-6 grid-rows-6 gap-4 sm:gap-6 w-full md:w-1/2"
         >
           {/* Card 1 */}
           <motion.div
@@ -121,12 +111,10 @@ const HeroSection = () => {
             className="col-span-3 row-span-3"
           >
             <Tilt tiltMaxAngleX={15} tiltMaxAngleY={15} className="h-full">
-              <div
-                className="h-full bg-white/15 backdrop-blur-2xl border border-white/10 
-              rounded-xl sm:rounded-3xl shadow-md sm:shadow-xl p-4 flex flex-col justify-center items-center"
-              >
-                <RocketOutlined className="text-3xl sm:text-5xl mb-2 sm:mb-4 text-[#70a1e6]" />
-                <h3 className="font-bold text-sm sm:text-lg">Fast Websites</h3>
+              <div className="h-full bg-white/15 backdrop-blur-2xl border border-white/10 rounded-2xl sm:rounded-3xl 
+                              shadow-xl sm:shadow-2xl p-4 sm:p-6 flex flex-col justify-center items-center">
+                <RocketOutlined className="text-4xl sm:text-5xl mb-3 sm:mb-4 text-[#70a1e6]" />
+                <h3 className="font-bold text-base sm:text-lg">Fast Websites</h3>
                 <p className="text-white/70 text-xs sm:text-sm text-center mt-2">
                   Optimized & lightning-fast performance
                 </p>
@@ -144,12 +132,10 @@ const HeroSection = () => {
             className="col-span-3 row-span-6"
           >
             <Tilt tiltMaxAngleX={12} tiltMaxAngleY={12} className="h-full">
-              <div
-                className="h-full bg-gradient-to-b from-[#7091e6] to-[#3d53a0] rounded-xl sm:rounded-3xl 
-              shadow-xl sm:shadow-3xl p-4 sm:p-8 flex flex-col justify-center items-center"
-              >
-                <CodeOutlined className="text-4xl sm:text-6xl mb-3 sm:mb-6 text-white" />
-                <h3 className="font-bold text-base sm:text-2xl">Clean Code</h3>
+              <div className="h-full bg-gradient-to-b from-[#7091e6] to-[#3d53a0] rounded-2xl sm:rounded-3xl 
+                              shadow-2xl sm:shadow-3xl p-6 sm:p-8 flex flex-col justify-center items-center">
+                <CodeOutlined className="text-5xl sm:text-6xl mb-4 sm:mb-6 text-white" />
+                <h3 className="font-bold text-lg sm:text-2xl">Clean Code</h3>
                 <p className="text-white/90 text-xs sm:text-sm text-center mt-3">
                   Modern, scalable, and maintainable solutions
                 </p>
@@ -167,15 +153,11 @@ const HeroSection = () => {
             className="col-span-3 row-span-3"
           >
             <Tilt tiltMaxAngleX={15} tiltMaxAngleY={15} className="h-full">
-              <div
-                className="h-full bg-gradient-to-br from-[#8697c4] via-[#adbbda] to-[#7091e6]/50 
-              backdrop-blur-lg rounded-xl sm:rounded-3xl shadow-md sm:shadow-xl 
-              p-4 flex flex-col justify-center items-center"
-              >
-                <BulbOutlined className="text-3xl sm:text-5xl mb-2 sm:mb-4 text-white" />
-                <h3 className="font-bold text-sm sm:text-lg">
-                  Creative Design
-                </h3>
+              <div className="h-full bg-gradient-to-br from-[#8697c4] via-[#adbbda] to-[#7091e6]/50 
+                              backdrop-blur-lg rounded-2xl sm:rounded-3xl shadow-lg sm:shadow-xl 
+                              p-4 sm:p-6 flex flex-col justify-center items-center">
+                <BulbOutlined className="text-4xl sm:text-5xl mb-3 sm:mb-4 text-white" />
+                <h3 className="font-bold text-base sm:text-lg">Creative Design</h3>
                 <p className="text-white/85 text-xs sm:text-sm text-center mt-2">
                   UI/UX that inspires & converts
                 </p>
@@ -190,17 +172,13 @@ const HeroSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="absolute -bottom-6 sm:-bottom-10 left-1/2 -translate-x-1/2 w-32 sm:w-52"
+            className="absolute -bottom-8 sm:-bottom-10 left-1/2 -translate-x-1/2 w-40 sm:w-52"
           >
             <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10}>
-              <div
-                className="bg-white/20 backdrop-blur-xl rounded-lg sm:rounded-2xl border border-white/10 
-              shadow-lg sm:shadow-2xl p-3 sm:p-6 flex flex-col items-center"
-              >
-                <GlobalOutlined className="text-2xl sm:text-4xl mb-1 sm:mb-2 text-[#3d53a0]" />
-                <h3 className="font-semibold text-xs sm:text-md">
-                  Global Reach
-                </h3>
+              <div className="bg-white/20 backdrop-blur-xl rounded-xl sm:rounded-2xl border border-white/10 
+                              shadow-lg sm:shadow-2xl p-4 sm:p-6 flex flex-col items-center">
+                <GlobalOutlined className="text-3xl sm:text-4xl mb-2 text-[#3d53a0]" />
+                <h3 className="font-semibold text-sm sm:text-md">Global Reach</h3>
               </div>
             </Tilt>
           </motion.div>
