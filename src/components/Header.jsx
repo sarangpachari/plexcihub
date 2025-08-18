@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import TrueFocus from "./react-bits/TrueFocus";
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
-  // Track scroll position using window.scrollY
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -20,27 +19,8 @@ const Header = () => {
     { label: "Offerings", href: "#services" },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: -20, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { type: "spring", stiffness: 120, damping: 15, staggerChildren: 0.1 },
-    },
-    exit: { opacity: 0, y: -20, scale: 0.9, transition: { duration: 0.2 } },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-  };
-
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
+    <header
       className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 
         backdrop-blur-xl shadow-lg rounded-3xl
         transition-all duration-500 ease-in-out
@@ -79,69 +59,42 @@ const Header = () => {
         </nav>
 
         {/* Mobile Toggle */}
-        <motion.div
+        <div
           className={`md:hidden text-[#3d53a0] cursor-pointer transition-all duration-500 ${
             scrollY > 50 ? "text-xl" : "text-2xl"
           }`}
-          initial={{ rotate: 0, scale: 1 }}
-          animate={{ rotate: mobileOpen ? 180 : 0, scale: mobileOpen ? 1.2 : 1 }}
-          transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           {mobileOpen ? <CloseOutlined /> : <MenuOutlined />}
-        </motion.div>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu with exit animation */}
       <AnimatePresence>
         {mobileOpen && (
-          <>
-            <motion.div
-              key="overlay"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-[#3d53a0]/40 backdrop-blur-sm z-40 rounded-3xl"
-              onClick={() => setMobileOpen(false)}
-            />
-            <motion.div
-              key="mobileMenu"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="fixed top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-sm z-50"
-            >
-              <div className="bg-[#8697c4] rounded-3xl shadow-2xl py-6 flex flex-col space-y-4 overflow-hidden">
-                {navLinks.map((link) => (
-                  <motion.a
-                    key={link.label}
-                    variants={itemVariants}
-                    href={link.href}
-                    initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
-                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                    whileHover={{
-                      scale: 1.08,
-                      color: "#7091e6",
-                      background: "linear-gradient(90deg, #3d53a0, #7091e6, #3d53a0)",
-                      backgroundSize: "200% 100%",
-                      backgroundPosition: "0% 50%",
-                      transition: { duration: 0.6, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" },
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 rounded-2xl font-semibold text-[#ede8f5] text-lg transition-all"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
-          </>
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }} // exit: fade out and move up
+            transition={{ duration: 0.35 }}
+            className="fixed top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-sm z-50"
+          >
+            <div className="bg-[#8697c4] rounded-3xl shadow-2xl py-6 flex flex-col space-y-4 overflow-hidden">
+              {navLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="px-6 py-3 rounded-2xl font-semibold text-[#ede8f5] text-lg transition-all"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 };
 
