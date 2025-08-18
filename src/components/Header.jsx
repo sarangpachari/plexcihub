@@ -19,49 +19,81 @@ const Header = () => {
     { label: "Offerings", href: "#services" },
   ];
 
-  // Only show header when scrolled more than 50px
-  if (scrollY < 50) return null;
+  // Framer Motion variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: -20, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 120,
+        damping: 15,
+        staggerChildren: 0.1,
+      },
+    },
+    exit: { opacity: 0, y: -20, scale: 0.9, transition: { duration: 0.2 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  };
 
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 w-full z-50 bg-white/40 shadow-lg backdrop-blur-xl"
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 
+        backdrop-blur-xl shadow-lg rounded-3xl
+        transition-all duration-500 ease-in-out
+        ${scrollY > 50 ? "w-[85%] py-2 bg-[#ede8f5]/95" : "w-[92%] py-4 bg-[#ede8f5]/70"}
+        ${mobileOpen ? "bg-[#ede8f5]" : ""}
+      `}
     >
-      <div className="w-full mx-auto px-12 py-6 flex items-center justify-between">
+      <div className={`flex items-center justify-between px-6 md:px-10 transition-all duration-500`}>
         {/* Logo */}
         <div className="pt-1">
           <TrueFocus
             sentence="PlexCi Hub"
             manualMode={false}
             blurAmount={4}
-            borderColor="black"
+            borderColor="#3d53a0"
             animationDuration={1}
             pauseBetweenAnimations={0.5}
           />
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-8 font-medium">
+        <nav
+          className={`hidden md:flex items-center space-x-8 font-medium transition-all duration-500 ${
+            scrollY > 50 ? "text-base" : "text-lg"
+          }`}
+        >
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="relative text-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent 
-                 transition-all duration-300 hover:opacity-90 group"
+              className="relative text-[#3d53a0] transition-all duration-300 hover:text-[#7091e6] group"
             >
               {link.label}
-              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#7091e6] transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
         </nav>
 
         {/* Mobile Toggle */}
         <motion.div
-          className="md:hidden text-black text-2xl cursor-pointer"
+          className={`md:hidden text-[#3d53a0] cursor-pointer transition-all duration-500 ${
+            scrollY > 50 ? "text-xl" : "text-2xl"
+          }`}
           initial={{ rotate: 0, scale: 1 }}
-          animate={{ rotate: mobileOpen ? 180 : 0, scale: mobileOpen ? 1.2 : 1 }}
+          animate={{
+            rotate: mobileOpen ? 180 : 0,
+            scale: mobileOpen ? 1.2 : 1,
+          }}
           transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
           onClick={() => setMobileOpen(!mobileOpen)}
         >
@@ -72,27 +104,48 @@ const Header = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            key="mobileMenu"
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden mx-4 my-2 bg-white/70 backdrop-blur-lg rounded-3xl shadow-xl p-6 flex flex-col space-y-4"
-          >
-            {navLinks.map((link) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                className="text-gray-800 font-medium text-lg hover:text-gray-500 transition"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </motion.a>
-            ))}
-          </motion.div>
+          <>
+            {/* Overlay */}
+            <motion.div
+              key="overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-[#3d53a0]/40 backdrop-blur-sm z-40 rounded-3xl"
+              onClick={() => setMobileOpen(false)}
+            />
+
+            {/* Floating Menu */}
+            <motion.div
+              key="mobileMenu"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="fixed top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-sm z-50"
+            >
+              <div className="bg-[#ede8f5] rounded-3xl shadow-2xl py-6 flex flex-col space-y-4">
+                {navLinks.map((link) => (
+                  <motion.a
+                    key={link.label}
+                    variants={itemVariants}
+                    href={link.href}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`px-6 py-3 rounded-2xl font-semibold transition ${
+                      scrollY > 50
+                        ? "text-base text-[#3d53a0] hover:text-[#7091e6]"
+                        : "text-lg text-[#3d53a0] hover:text-[#7091e6]"
+                    } hover:bg-[#adbbda]`}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.header>
