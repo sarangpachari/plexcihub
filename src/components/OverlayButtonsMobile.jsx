@@ -7,10 +7,10 @@ const OverlayButtonsMobile = () => {
   const [open, setOpen] = useState(false);
 
   const buttons = [
-    { href: "https://wa.me/+917012981845", icon: <FaWhatsapp />, color: "#25D366" },
-    { href: "https://instagram.com/plexcihub", icon: <FaInstagram />, color: "#E1306C", gradient: true },
-    { href: "https://www.facebook.com/share/14Fkb24gKzL/?mibextid=wwXIfr", icon: <FaFacebookF />, color: "#1877F2" },
-    { href: "tel:+917012981845", icon: <FaPhone />, color: "#213869" },
+    { href: "https://wa.me/+917012981845", icon: <FaWhatsapp /> },
+    { href: "https://instagram.com/plexcihub", icon: <FaInstagram /> },
+    { href: "https://www.facebook.com/share/14Fkb24gKzL/?mibextid=wwXIfr", icon: <FaFacebookF /> },
+    { href: "tel:+917012981845", icon: <FaPhone /> },
   ];
 
   return (
@@ -27,16 +27,15 @@ const OverlayButtonsMobile = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.8 }}
               transition={{ duration: 0.3, delay: idx * 0.05, type: "spring", stiffness: 300 }}
+              className="p-4 rounded-full shadow-xl flex items-center justify-center
+                transition-all duration-300 hover:scale-110"
               style={{
-                background: button.gradient
-                  ? "linear-gradient(to bottom right, #833ab420, #fd1d1d20, #fcb04520)"
-                  : `${button.color}30`,
+                background: "#adbbda", // Light Lavender
               }}
-              className="p-4 rounded-full shadow-xl hover:scale-110 transition-all duration-300 flex items-center justify-center"
             >
               <div
-                style={{ color: button.gradient ? "#E1306C" : button.color }}
-                className="text-2xl transition-colors duration-300"
+                style={{ color: "#3d53a0" }} // Primary Deep Blue
+                className="text-2xl transition-colors duration-300 hover:text-[#7091e6]" // Accent Blue on hover
               >
                 {button.icon}
               </div>
@@ -52,11 +51,14 @@ const OverlayButtonsMobile = () => {
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: "spring", stiffness: 500, damping: 20 }}
-        className="relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 shadow-2xl text-white text-xl font-bold hover:shadow-blue-400 hover:animate-pulse transition-all overflow-visible"
+        className="relative flex items-center justify-center w-16 h-16 rounded-full shadow-2xl text-white text-xl font-bold hover:shadow-blue-400 transition-all overflow-visible"
+        style={{
+          background: "linear-gradient(135deg, #3d53a0, #7091e6)", // Deep Blue → Accent Blue gradient
+        }}
       >
         {open ? <IoMdClose size={28} /> : <IoMdContacts size={28} />}
         {/* Glow behind the button */}
-        <span className="absolute -z-10 w-full h-full rounded-full bg-white opacity-10 animate-ping"></span>
+        <span className="absolute -z-10 w-full h-full rounded-full bg-[#3d53a0]/20 animate-ping"></span>
       </motion.button>
     </div>
   );
