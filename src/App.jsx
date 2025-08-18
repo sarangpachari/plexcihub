@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import OverlayButtons from "./components/OverlayButtons";
 import Header from "./components/Header";
 import OverlayButtonsMobile from "./components/OverlayButtonsMobile";
+import WhyChooseUs from "./components/WhyChooseUs";
 // import WebsiteChatbot from "./components/modals/WebsiteChatbot";
 
 const App = () => {
@@ -20,6 +21,11 @@ const App = () => {
         {/* Portfolio Section */}
         <section className="flex items-center justify-center w-full min-h-screen">
           <PortfolioSection />
+        </section>
+
+        {/* Why Choose Us Section */}
+        <section className="flex items-center justify-center w-full min-h-screen">
+          <WhyChooseUs />
         </section>
 
         {/* Services Section */}
