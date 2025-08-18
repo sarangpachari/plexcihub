@@ -122,41 +122,46 @@ const Header = () => {
               onClick={() => setMobileOpen(false)}
             />
 
-           {/* Floating Menu */}
-<motion.div
-  key="mobileMenu"
-  variants={containerVariants}
-  initial="hidden"
-  animate="visible"
-  exit="exit"
-  className="fixed top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-sm z-50"
->
-  <div className="bg-[#8697c4] rounded-3xl shadow-2xl py-6 flex flex-col space-y-4 overflow-hidden">
-    {navLinks.map((link) => (
-      <motion.a
-        key={link.label}
-        variants={itemVariants}
-        href={link.href}
-        initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
-        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-        whileHover={{
-          scale: 1.08,
-          color: "#7091e6",
-          background: "linear-gradient(90deg, #3d53a0, #7091e6, #3d53a0)",
-          backgroundSize: "200% 100%",
-          backgroundPosition: "0% 50%",
-          transition: { duration: 0.6, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" },
-        }}
-        whileTap={{ scale: 0.95 }}
-        className="px-6 py-3 rounded-2xl font-semibold text-[#ede8f5] text-lg transition-all"
-        onClick={() => setMobileOpen(false)}
-      >
-        {link.label}
-      </motion.a>
-    ))}
-  </div>
-</motion.div>
-
+            {/* Floating Menu */}
+            <motion.div
+              key="mobileMenu"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="fixed top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-sm z-50"
+            >
+              <div className="bg-[#8697c4] rounded-3xl shadow-2xl py-6 flex flex-col space-y-4 overflow-hidden">
+                {navLinks.map((link) => (
+                  <motion.a
+                    key={link.label}
+                    variants={itemVariants}
+                    href={link.href}
+                    initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    whileHover={{
+                      scale: 1.08,
+                      color: "#7091e6",
+                      background:
+                        "linear-gradient(90deg, #3d53a0, #7091e6, #3d53a0)",
+                      backgroundSize: "200% 100%",
+                      backgroundPosition: "0% 50%",
+                      transition: {
+                        duration: 0.6,
+                        ease: "easeInOut",
+                        repeat: Infinity,
+                        repeatType: "mirror",
+                      },
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-6 py-3 rounded-2xl font-semibold text-[#ede8f5] text-lg transition-all"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
           </>
         )}
       </AnimatePresence>
