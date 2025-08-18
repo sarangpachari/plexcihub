@@ -49,11 +49,17 @@ const Header = () => {
       className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 
         backdrop-blur-xl shadow-lg rounded-3xl
         transition-all duration-500 ease-in-out
-        ${scrollY > 50 ? "w-[85%] py-2 bg-[#ede8f5]/95" : "w-[92%] py-4 bg-[#ede8f5]/70"}
+        ${
+          scrollY > 50
+            ? "w-[85%] py-2 bg-[#ede8f5]/95"
+            : "w-[92%] py-4 bg-[#ede8f5]/70"
+        }
         ${mobileOpen ? "bg-[#ede8f5]" : ""}
       `}
     >
-      <div className={`flex items-center justify-between px-6 md:px-10 transition-all duration-500`}>
+      <div
+        className={`flex items-center justify-between px-6 md:px-10 transition-all duration-500`}
+      >
         {/* Logo */}
         <div className="pt-1">
           <TrueFocus
@@ -116,35 +122,41 @@ const Header = () => {
               onClick={() => setMobileOpen(false)}
             />
 
-            {/* Floating Menu */}
-            <motion.div
-              key="mobileMenu"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="fixed top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-sm z-50"
-            >
-              <div className="bg-[#ede8f5] rounded-3xl shadow-2xl py-6 flex flex-col space-y-4">
-                {navLinks.map((link) => (
-                  <motion.a
-                    key={link.label}
-                    variants={itemVariants}
-                    href={link.href}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`px-6 py-3 rounded-2xl font-semibold transition ${
-                      scrollY > 50
-                        ? "text-base text-[#3d53a0] hover:text-[#7091e6]"
-                        : "text-lg text-[#3d53a0] hover:text-[#7091e6]"
-                    } hover:bg-[#adbbda]`}
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
+           {/* Floating Menu */}
+<motion.div
+  key="mobileMenu"
+  variants={containerVariants}
+  initial="hidden"
+  animate="visible"
+  exit="exit"
+  className="fixed top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-sm z-50"
+>
+  <div className="bg-[#8697c4] rounded-3xl shadow-2xl py-6 flex flex-col space-y-4 overflow-hidden">
+    {navLinks.map((link) => (
+      <motion.a
+        key={link.label}
+        variants={itemVariants}
+        href={link.href}
+        initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
+        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        whileHover={{
+          scale: 1.08,
+          color: "#7091e6",
+          background: "linear-gradient(90deg, #3d53a0, #7091e6, #3d53a0)",
+          backgroundSize: "200% 100%",
+          backgroundPosition: "0% 50%",
+          transition: { duration: 0.6, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" },
+        }}
+        whileTap={{ scale: 0.95 }}
+        className="px-6 py-3 rounded-2xl font-semibold text-[#ede8f5] text-lg transition-all"
+        onClick={() => setMobileOpen(false)}
+      >
+        {link.label}
+      </motion.a>
+    ))}
+  </div>
+</motion.div>
+
           </>
         )}
       </AnimatePresence>
