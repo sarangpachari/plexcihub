@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   SafetyCertificateOutlined,
@@ -7,57 +7,58 @@ import {
   FileTextOutlined,
 } from "@ant-design/icons";
 
-// 🔮 Animation Variants
+// 🔹 Animation Variants
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.12, // faster stagger
-      delayChildren: 0.05,
-    },
+    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
   },
 };
 
-const cardVariants = {
+const cardVariantsDesktop = {
   hidden: { opacity: 0, y: 50, scale: 0.95 },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 180, // faster spring
-      damping: 20,
-    },
+    transition: { type: "spring", stiffness: 180, damping: 20 },
   },
 };
 
-const AnimatedBackground = () => {
+const cardVariantsMobile = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+};
+
+// 🔹 Animated Background
+const AnimatedBackground = ({ isMobile }) => {
+  if (isMobile) return null; // Disable background animations on mobile
+
   return (
     <div className="absolute inset-0 -z-20 overflow-hidden">
-      {/* Light Gradient Animation */}
+      {/* Gradient Animation */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-br from-white via-[#f7f7fb] to-[#e0e7ff]"
         animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }} // faster
+        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         style={{ backgroundSize: "200% 200%" }}
       />
 
       {/* Floating Pastel Orbs */}
       <motion.div
-        className="absolute top-10 left-10 w-80 h-80 rounded-full bg-pink-200/40 blur-3xl"
-        animate={{ x: [0, 120, -120, 0], y: [0, -70, 90, 0] }}
+        className="absolute top-10 left-10 w-60 h-60 rounded-full bg-pink-200/40 blur-2xl"
+        animate={{ x: [0, 100, -100, 0], y: [0, -50, 60, 0] }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute right-20 bottom-10 w-96 h-96 rounded-full bg-blue-200/40 blur-3xl"
-        animate={{ x: [0, -120, 120, 0], y: [0, 60, -80, 0] }}
+        className="absolute right-20 bottom-10 w-72 h-72 rounded-full bg-blue-200/40 blur-2xl"
+        animate={{ x: [0, -100, 100, 0], y: [0, 50, -60, 0] }}
         transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute left-1/3 top-1/3 w-72 h-72 rounded-full bg-purple-200/40 blur-3xl"
-        animate={{ x: [0, 90, -90, 0], y: [0, -60, 70, 0] }}
+        className="absolute left-1/3 top-1/3 w-56 h-56 rounded-full bg-purple-200/40 blur-2xl"
+        animate={{ x: [0, 80, -80, 0], y: [0, -40, 50, 0] }}
         transition={{ duration: 21, repeat: Infinity, ease: "easeInOut" }}
       />
     </div>
@@ -65,12 +66,21 @@ const AnimatedBackground = () => {
 };
 
 const PrivacyRefundSection = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <section
       id="policies"
       className="relative min-h-screen flex items-center justify-center px-6 sm:px-10 md:px-16 lg:px-32 py-24 overflow-hidden"
     >
-      <AnimatedBackground />
+      <AnimatedBackground isMobile={isMobile} />
 
       <motion.div
         variants={containerVariants}
@@ -81,9 +91,8 @@ const PrivacyRefundSection = () => {
       >
         {/* Privacy Policy */}
         <motion.div
-          variants={cardVariants}
-          whileHover={{ scale: 1.05, boxShadow: "0px 0px 35px rgba(0,0,0,0.1)" }}
-          className="p-8 rounded-2xl bg-white/75 backdrop-blur-xl border border-gray-200 shadow-xl"
+          variants={isMobile ? cardVariantsMobile : cardVariantsDesktop}
+          className="p-6 sm:p-8 rounded-2xl bg-white/75 backdrop-blur-md border border-gray-200 shadow-md"
         >
           <div className="flex items-center gap-3 mb-4">
             <SafetyCertificateOutlined className="text-blue-500 text-2xl" />
@@ -99,9 +108,8 @@ const PrivacyRefundSection = () => {
 
         {/* Refund Policy */}
         <motion.div
-          variants={cardVariants}
-          whileHover={{ scale: 1.05, boxShadow: "0px 0px 35px rgba(0,0,0,0.1)" }}
-          className="p-8 rounded-2xl bg-white/75 backdrop-blur-xl border border-gray-200 shadow-xl"
+          variants={isMobile ? cardVariantsMobile : cardVariantsDesktop}
+          className="p-6 sm:p-8 rounded-2xl bg-white/75 backdrop-blur-md border border-gray-200 shadow-md"
         >
           <div className="flex items-center gap-3 mb-4">
             <ReloadOutlined className="text-blue-500 text-2xl" />
@@ -127,9 +135,8 @@ const PrivacyRefundSection = () => {
 
         {/* Terms & Conditions */}
         <motion.div
-          variants={cardVariants}
-          whileHover={{ scale: 1.05, boxShadow: "0px 0px 35px rgba(0,0,0,0.1)" }}
-          className="p-8 rounded-2xl bg-white/75 backdrop-blur-xl border border-gray-200 shadow-xl"
+          variants={isMobile ? cardVariantsMobile : cardVariantsDesktop}
+          className="p-6 sm:p-8 rounded-2xl bg-white/75 backdrop-blur-md border border-gray-200 shadow-md"
         >
           <div className="flex items-center gap-3 mb-4">
             <FileTextOutlined className="text-blue-500 text-2xl" />
