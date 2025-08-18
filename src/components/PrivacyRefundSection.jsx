@@ -13,22 +13,22 @@ const containerVariants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1,
+      staggerChildren: 0.12, // faster stagger
+      delayChildren: 0.05,
     },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 80, scale: 0.9 },
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
       type: "spring",
-      stiffness: 120,
-      damping: 15,
+      stiffness: 180, // faster spring
+      damping: 20,
     },
   },
 };
@@ -40,25 +40,25 @@ const AnimatedBackground = () => {
       <motion.div
         className="absolute inset-0 bg-gradient-to-br from-white via-[#f7f7fb] to-[#e0e7ff]"
         animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 15, repeat: Infinity, ease: "linear" }} // faster
         style={{ backgroundSize: "200% 200%" }}
       />
 
       {/* Floating Pastel Orbs */}
       <motion.div
         className="absolute top-10 left-10 w-80 h-80 rounded-full bg-pink-200/40 blur-3xl"
-        animate={{ x: [0, 100, -120, 0], y: [0, -60, 80, 0] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ x: [0, 120, -120, 0], y: [0, -70, 90, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute right-20 bottom-10 w-96 h-96 rounded-full bg-blue-200/40 blur-3xl"
-        animate={{ x: [0, -100, 100, 0], y: [0, 50, -70, 0] }}
-        transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ x: [0, -120, 120, 0], y: [0, 60, -80, 0] }}
+        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute left-1/3 top-1/3 w-72 h-72 rounded-full bg-purple-200/40 blur-3xl"
-        animate={{ x: [0, 80, -80, 0], y: [0, -50, 60, 0] }}
-        transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ x: [0, 90, -90, 0], y: [0, -60, 70, 0] }}
+        transition={{ duration: 21, repeat: Infinity, ease: "easeInOut" }}
       />
     </div>
   );
@@ -68,23 +68,22 @@ const PrivacyRefundSection = () => {
   return (
     <section
       id="policies"
-      className="relative min-h-screen flex items-center justify-center px-6 sm:px-10 md:px-16 lg:px-32 py-20 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center px-6 sm:px-10 md:px-16 lg:px-32 py-24 overflow-hidden"
     >
-      {/* Animated Background */}
       <AnimatedBackground />
 
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.2 }}
-        className="w-full flex flex-col gap-16 text-gray-800 relative z-10"
+        viewport={{ once: false, amount: 0.3 }}
+        className="w-full flex flex-col gap-12 text-gray-800 relative z-10"
       >
         {/* Privacy Policy */}
         <motion.div
           variants={cardVariants}
-          whileHover={{ scale: 1.05, boxShadow: "0px 0px 25px rgba(0,0,0,0.1)" }}
-          className="p-8 rounded-2xl bg-white/70 backdrop-blur-xl border border-gray-200 shadow-xl"
+          whileHover={{ scale: 1.05, boxShadow: "0px 0px 35px rgba(0,0,0,0.1)" }}
+          className="p-8 rounded-2xl bg-white/75 backdrop-blur-xl border border-gray-200 shadow-xl"
         >
           <div className="flex items-center gap-3 mb-4">
             <SafetyCertificateOutlined className="text-blue-500 text-2xl" />
@@ -101,8 +100,8 @@ const PrivacyRefundSection = () => {
         {/* Refund Policy */}
         <motion.div
           variants={cardVariants}
-          whileHover={{ scale: 1.05, boxShadow: "0px 0px 25px rgba(0,0,0,0.1)" }}
-          className="p-8 rounded-2xl bg-white/70 backdrop-blur-xl border border-gray-200 shadow-xl"
+          whileHover={{ scale: 1.05, boxShadow: "0px 0px 35px rgba(0,0,0,0.1)" }}
+          className="p-8 rounded-2xl bg-white/75 backdrop-blur-xl border border-gray-200 shadow-xl"
         >
           <div className="flex items-center gap-3 mb-4">
             <ReloadOutlined className="text-blue-500 text-2xl" />
@@ -129,8 +128,8 @@ const PrivacyRefundSection = () => {
         {/* Terms & Conditions */}
         <motion.div
           variants={cardVariants}
-          whileHover={{ scale: 1.05, boxShadow: "0px 0px 25px rgba(0,0,0,0.1)" }}
-          className="p-8 rounded-2xl bg-white/70 backdrop-blur-xl border border-gray-200 shadow-xl"
+          whileHover={{ scale: 1.05, boxShadow: "0px 0px 35px rgba(0,0,0,0.1)" }}
+          className="p-8 rounded-2xl bg-white/75 backdrop-blur-xl border border-gray-200 shadow-xl"
         >
           <div className="flex items-center gap-3 mb-4">
             <FileTextOutlined className="text-blue-500 text-2xl" />
