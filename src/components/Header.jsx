@@ -7,6 +7,7 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
+  // Track scroll position using window.scrollY
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -19,19 +20,13 @@ const Header = () => {
     { label: "Offerings", href: "#services" },
   ];
 
-  // Framer Motion variants
   const containerVariants = {
     hidden: { opacity: 0, y: -20, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 120,
-        damping: 15,
-        staggerChildren: 0.1,
-      },
+      transition: { type: "spring", stiffness: 120, damping: 15, staggerChildren: 0.1 },
     },
     exit: { opacity: 0, y: -20, scale: 0.9, transition: { duration: 0.2 } },
   };
@@ -49,17 +44,10 @@ const Header = () => {
       className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 
         backdrop-blur-xl shadow-lg rounded-3xl
         transition-all duration-500 ease-in-out
-        ${
-          scrollY > 50
-            ? "w-[85%] py-2 bg-[#ede8f5]/95"
-            : "w-[92%] py-4 bg-[#ede8f5]/70"
-        }
-        ${mobileOpen ? "bg-[#ede8f5]" : ""}
-      `}
+        ${scrollY > 50 ? "w-[85%] py-2 bg-[#ede8f5]/95" : "w-[92%] py-4 bg-[#ede8f5]/70"}
+        ${mobileOpen ? "bg-[#ede8f5]" : ""}`}
     >
-      <div
-        className={`flex items-center justify-between px-6 md:px-10 transition-all duration-500`}
-      >
+      <div className="flex items-center justify-between px-6 md:px-10 transition-all duration-500">
         {/* Logo */}
         <div className="pt-1">
           <TrueFocus
@@ -96,10 +84,7 @@ const Header = () => {
             scrollY > 50 ? "text-xl" : "text-2xl"
           }`}
           initial={{ rotate: 0, scale: 1 }}
-          animate={{
-            rotate: mobileOpen ? 180 : 0,
-            scale: mobileOpen ? 1.2 : 1,
-          }}
+          animate={{ rotate: mobileOpen ? 180 : 0, scale: mobileOpen ? 1.2 : 1 }}
           transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
           onClick={() => setMobileOpen(!mobileOpen)}
         >
@@ -111,7 +96,6 @@ const Header = () => {
       <AnimatePresence>
         {mobileOpen && (
           <>
-            {/* Overlay */}
             <motion.div
               key="overlay"
               initial={{ opacity: 0 }}
@@ -121,8 +105,6 @@ const Header = () => {
               className="fixed inset-0 bg-[#3d53a0]/40 backdrop-blur-sm z-40 rounded-3xl"
               onClick={() => setMobileOpen(false)}
             />
-
-            {/* Floating Menu */}
             <motion.div
               key="mobileMenu"
               variants={containerVariants}
@@ -142,16 +124,10 @@ const Header = () => {
                     whileHover={{
                       scale: 1.08,
                       color: "#7091e6",
-                      background:
-                        "linear-gradient(90deg, #3d53a0, #7091e6, #3d53a0)",
+                      background: "linear-gradient(90deg, #3d53a0, #7091e6, #3d53a0)",
                       backgroundSize: "200% 100%",
                       backgroundPosition: "0% 50%",
-                      transition: {
-                        duration: 0.6,
-                        ease: "easeInOut",
-                        repeat: Infinity,
-                        repeatType: "mirror",
-                      },
+                      transition: { duration: 0.6, ease: "easeInOut", repeat: Infinity, repeatType: "mirror" },
                     }}
                     whileTap={{ scale: 0.95 }}
                     className="px-6 py-3 rounded-2xl font-semibold text-[#ede8f5] text-lg transition-all"

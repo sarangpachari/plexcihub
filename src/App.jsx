@@ -37,7 +37,6 @@ const App = () => {
       <OverlayButtons /> {/* Desktop / Tablet */}
       <OverlayButtonsMobile /> {/* Mobile only */}
       {/* <WebsiteChatbot /> */}
-      
     </div>
   );
 };

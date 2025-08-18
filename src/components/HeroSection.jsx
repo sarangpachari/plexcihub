@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import { Button } from "antd";
 import {
@@ -11,14 +11,26 @@ import {
 } from "@ant-design/icons";
 
 const HeroSection = () => {
-  const { scrollYProgress } = useScroll();
+  const [scrollY, setScrollY] = useState(0);
 
-  const yText = useTransform(scrollYProgress, [0, 0.5], [0, -100]);
-  const opacityText = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const yOrb1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const yOrb2 = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const scaleCards = useTransform(scrollYProgress, [0, 0.5], [1, 1.1]);
-  const rotateCards = useTransform(scrollYProgress, [0, 0.5], [0, 10]);
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Map scrollY to animation ranges
+  const mapRange = (value, inMin, inMax, outMin, outMax) => {
+    const clamped = Math.min(Math.max(value, inMin), inMax);
+    return outMin + ((clamped - inMin) * (outMax - outMin)) / (inMax - inMin);
+  };
+
+  const yText = mapRange(scrollY, 0, 500, 0, -100);
+  const opacityText = mapRange(scrollY, 0, 300, 1, 0);
+  const yOrb1 = mapRange(scrollY, 0, 1000, 0, -200);
+  const yOrb2 = mapRange(scrollY, 0, 1000, 0, 150);
+  const scaleCards = mapRange(scrollY, 0, 500, 1, 1.1);
+  const rotateCards = mapRange(scrollY, 0, 500, 0, 10);
 
   const cardVariants = {
     hidden: { opacity: 0, y: 60, scale: 0.9, rotateX: -10 },
@@ -71,13 +83,13 @@ const HeroSection = () => {
         <motion.div
           style={{ y: yText, opacity: opacityText }}
           initial={{ opacity: 0, x: -80 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
-          viewport={{ once: true }}
           className="w-full md:w-1/2 text-center md:text-left"
         >
           <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-[#ede8f5] to-[#adbbda] drop-shadow-lg">
-            Fueling Your Growth,<br className="hidden sm:block" /> Pixel by Pixel.
+            Fueling Your Growth,
+            <br className="hidden sm:block" /> Pixel by Pixel.
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-white/85 mb-8 leading-relaxed drop-shadow-md">
             At <span className="font-bold">Plex Ci Hub</span>, we build websites
@@ -101,6 +113,7 @@ const HeroSection = () => {
           style={{ scale: scaleCards, rotate: rotateCards }}
           className="relative grid grid-cols-6 grid-rows-6 gap-4 sm:gap-6 w-full md:w-1/2"
         >
+          {/* Cards same as before */}
           {/* Card 1 */}
           <motion.div
             custom={0}
@@ -111,10 +124,14 @@ const HeroSection = () => {
             className="col-span-3 row-span-3"
           >
             <Tilt tiltMaxAngleX={15} tiltMaxAngleY={15} className="h-full">
-              <div className="h-full bg-white/15 backdrop-blur-2xl border border-white/10 rounded-2xl sm:rounded-3xl 
-                              shadow-xl sm:shadow-2xl p-4 sm:p-6 flex flex-col justify-center items-center">
+              <div
+                className="h-full bg-white/15 backdrop-blur-2xl border border-white/10 rounded-2xl sm:rounded-3xl 
+                              shadow-xl sm:shadow-2xl p-4 sm:p-6 flex flex-col justify-center items-center"
+              >
                 <RocketOutlined className="text-4xl sm:text-5xl mb-3 sm:mb-4 text-[#70a1e6]" />
-                <h3 className="font-bold text-base sm:text-lg">Fast Websites</h3>
+                <h3 className="font-bold text-base sm:text-lg">
+                  Fast Websites
+                </h3>
                 <p className="text-white/70 text-xs sm:text-sm text-center mt-2">
                   Optimized & lightning-fast performance
                 </p>
@@ -132,8 +149,10 @@ const HeroSection = () => {
             className="col-span-3 row-span-6"
           >
             <Tilt tiltMaxAngleX={12} tiltMaxAngleY={12} className="h-full">
-              <div className="h-full bg-gradient-to-b from-[#7091e6] to-[#3d53a0] rounded-2xl sm:rounded-3xl 
-                              shadow-2xl sm:shadow-3xl p-6 sm:p-8 flex flex-col justify-center items-center">
+              <div
+                className="h-full bg-gradient-to-b from-[#7091e6] to-[#3d53a0] rounded-2xl sm:rounded-3xl 
+                              shadow-2xl sm:shadow-3xl p-6 sm:p-8 flex flex-col justify-center items-center"
+              >
                 <CodeOutlined className="text-5xl sm:text-6xl mb-4 sm:mb-6 text-white" />
                 <h3 className="font-bold text-lg sm:text-2xl">Clean Code</h3>
                 <p className="text-white/90 text-xs sm:text-sm text-center mt-3">
@@ -153,11 +172,15 @@ const HeroSection = () => {
             className="col-span-3 row-span-3"
           >
             <Tilt tiltMaxAngleX={15} tiltMaxAngleY={15} className="h-full">
-              <div className="h-full bg-gradient-to-br from-[#8697c4] via-[#adbbda] to-[#7091e6]/50 
+              <div
+                className="h-full bg-gradient-to-br from-[#8697c4] via-[#adbbda] to-[#7091e6]/50 
                               backdrop-blur-lg rounded-2xl sm:rounded-3xl shadow-lg sm:shadow-xl 
-                              p-4 sm:p-6 flex flex-col justify-center items-center">
+                              p-4 sm:p-6 flex flex-col justify-center items-center"
+              >
                 <BulbOutlined className="text-4xl sm:text-5xl mb-3 sm:mb-4 text-white" />
-                <h3 className="font-bold text-base sm:text-lg">Creative Design</h3>
+                <h3 className="font-bold text-base sm:text-lg">
+                  Creative Design
+                </h3>
                 <p className="text-white/85 text-xs sm:text-sm text-center mt-2">
                   UI/UX that inspires & converts
                 </p>
@@ -175,10 +198,14 @@ const HeroSection = () => {
             className="absolute -bottom-8 sm:-bottom-10 left-1/2 -translate-x-1/2 w-40 sm:w-52"
           >
             <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10}>
-              <div className="bg-white/20 backdrop-blur-xl rounded-xl sm:rounded-2xl border border-white/10 
-                              shadow-lg sm:shadow-2xl p-4 sm:p-6 flex flex-col items-center">
+              <div
+                className="bg-white/20 backdrop-blur-xl rounded-xl sm:rounded-2xl border border-white/10 
+                              shadow-lg sm:shadow-2xl p-4 sm:p-6 flex flex-col items-center"
+              >
                 <GlobalOutlined className="text-3xl sm:text-4xl mb-2 text-[#3d53a0]" />
-                <h3 className="font-semibold text-sm sm:text-md">Global Reach</h3>
+                <h3 className="font-semibold text-sm sm:text-md">
+                  Global Reach
+                </h3>
               </div>
             </Tilt>
           </motion.div>
