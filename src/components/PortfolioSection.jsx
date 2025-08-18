@@ -31,10 +31,10 @@ const PortfolioSection = () => {
       {/* Heading with scroll parallax */}
       <motion.h1
         style={{ y: headingY, scale: headingScale }}
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        viewport={{ once: true }}
+        viewport={{ once: false, amount: 0.6 }} // re-triggers on scroll
         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-center text-[#3d53a0] mb-14 z-10"
       >
         Who We Are
@@ -48,7 +48,7 @@ const PortfolioSection = () => {
             initial={{ opacity: 0, x: idx % 2 === 0 ? -80 : 80 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: true, amount: 0.5 }}
+            viewport={{ once: false, amount: 0.5 }} // play again every scroll
             className="text-center text-[#3d53a0]/90 text-lg sm:text-xl md:text-2xl leading-relaxed z-10"
           >
             {text}
@@ -68,7 +68,7 @@ const PortfolioSection = () => {
               ease: "easeOut",
               delay: idx * 0.2,
             }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.5 }} // smooth re-entry
             className="bg-white shadow-xl rounded-2xl p-8 text-[#3d53a0] text-center font-semibold text-lg hover:scale-105 hover:shadow-2xl transition"
           >
             {idx === 0 && "🌐 Modern Websites"}
