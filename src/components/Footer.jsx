@@ -33,6 +33,29 @@ const Footer = () => {
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-[-10%] right-[-10%] w-72 h-72 bg-[#7091e6]/20 rounded-full blur-3xl"
       />
+      <motion.div
+        animate={{ y: [0, -20, 0], x: [0, -15, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[20%] right-[-5%] w-52 h-52 bg-[#3d53a0]/30 rounded-full blur-2xl"
+      />
+
+      {/* ✨ Twinkling Stars */}
+      {[...Array(20)].map((_, i) => (
+        <motion.span
+          key={i}
+          className="absolute w-1 h-1 bg-white rounded-full opacity-70"
+          style={{
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+          }}
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{
+            duration: 3 + Math.random() * 2,
+            repeat: Infinity,
+            delay: Math.random() * 5,
+          }}
+        />
+      ))}
 
       {/* 🌐 Footer Content */}
       <div className="relative z-10 bg-white/10 backdrop-blur-2xl py-12 px-6 sm:px-12 md:px-20">
