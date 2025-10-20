@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import logo from "../assets/logo590.png";
+import logo from "../assets/logofull.png";
 import { HiMenu, HiX } from "react-icons/hi";
 import { motion } from "framer-motion";
 
@@ -38,12 +38,12 @@ const Header = () => {
           <a href="#">
             <img
               src={logo}
-              className={`w-10 ${isScrolled ? "" : "invert"}`}
+              className={`md:w-20 w-15 ${isScrolled ? "" : "invert"}`}
               alt="logo"
             />
           </a>
           <a href="#">
-            <span className="text-xl hidden md:block font-semibold">
+            <span className="text-xl hidden font-semibold">
               PlexCi Hub
             </span>
           </a>
