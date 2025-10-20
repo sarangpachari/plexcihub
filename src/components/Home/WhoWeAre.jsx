@@ -35,7 +35,7 @@ const WhoWeAre = () => {
         </div>
 
         {/* Center Glassy Logo Card */}
-        <div className="w-full flex justify-center mt-20">
+        <div className="w-full flex justify-center mt-4 md:mt-20">
           <Tilt
             tiltMaxAngleX={20}
             tiltMaxAngleY={20}
